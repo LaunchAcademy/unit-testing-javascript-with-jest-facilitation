@@ -10,12 +10,12 @@
 
 ## What is Automated Testing?
 
-- Code that verifies the code we write, works the way we expect
-- Software is prone to human error
+- Code that verifies the code we write
+- Ensures our code works the way we expect
+- Software is prone to **human** error
 - We use code to ensure our software does what we think it will
 - As we change things, it protects us from ourselves in ensuring that we didn't unintentionally break something that already existed
-
-- contrary to manual testing
+- Contrary to manual testing
 
 ---
 
@@ -34,28 +34,28 @@
 
 - We could test without a framework
 - Simply provides scopes, stubs and matchers, and a simple cli
-- Jest: prebuilt, lightweight, easy to configure 
+- Jest: prebuilt, lightweight, easy to configure
 - Extremely flexible
 
 ---
 
---- 
-
+---
 
 ## A Simple Example
 
 `src/triple.js`:
 
 ```javascript
-const triple = num => {
+const triple = (num) => {
   return num * 3
 }
 ```
 
 - The "black box" we're testing is that: given a number going into the factory, we expect its triple to come out as the finished product.
 
----
+- Focus on the `return` or _side effect_
 
+---
 
 ## Verifying Our Assumptions
 
@@ -65,9 +65,9 @@ const triple = num => {
 `src/__tests__/triple.test.js`:
 
 ```javascript
-import triple from '../triple.js'
-describe('tripling a number', () => {
-  it('triples 3 resulting in 9', () => {
+import triple from "../triple.js"
+describe("tripling a number", () => {
+  it("triples 3 resulting in 9", () => {
     expect(triple(3)).toEqual(9)
   })
 })
@@ -92,19 +92,81 @@ describe('tripling a number', () => {
 
 ---
 
+## Common Matchers
+
+https://jestjs.io/docs/using-matchers
+
+- .toEqual (_deep equality_)
+
+```javascript
+expect(triple(3)).toEqual(9)
+```
+
+- .toBe (_strict equality_ ===)
+
+```javascript
+expect(2 + 2).toBe(4)
+```
+
+- .toHaveProperty
+
+```javascript
+expect(nick).toHaveProperty("firstName")
+```
+
+---
+
+## Common Matchers (cont.)
+
+- .toBeInstanceOf
+
+```javascript
+expect("string").toBeInstanceOf(String)
+```
+
+- .toContain
+
+```javascript
+expect([1, 2, 3]).toContain(2)
+```
+
+- .toBeLessThanOrEqual
+
+```javascript
+expect(array.length).toBeLessThanOrEqual(10)
+```
+
+- .toMatchObject
+
+```javascript
+expect({ title: "Jest", extra: "stuff" }).toMatchObject({ title: "Jest" })
+```
+
+---
+
+## Notes on Matchers
+
+- `.toBe` uses _strict equality_ meaning the values must be the same type and value
+
+- `.toEqual` uses _deep equlity_, best for arrays or objects to ensure ALL fields are present
+
+- `.toMatchObject` ensures the object has the expected properties, and ignores additional properties
+
+---
+
 ## Let's Write the First Test
 
 `src/__tests__/triple.test.js`:
 
 ```javascript
-import triple from '../triple.js'
+import triple from "../triple.js"
 
 // Given this function and how integers work
 
 // When
-describe('tripling a number', () => {
+describe("tripling a number", () => {
   // Then
-  it('triples 3 resulting in 9', () => {
+  it("triples 3 resulting in 9", () => {
     expect(triple(3)).toEqual(9)
   })
 })
@@ -122,7 +184,7 @@ describe("tripling a number", () => {
   })
 
   it("triples 4 resulting in 12", () => {
-    expect(triple(3).toEqual(12))
+    expect(triple(4).toEqual(12))
   })
 
   it("triples 0 resulting in 0", () => {
@@ -143,14 +205,14 @@ describe("tripling a number", () => {
 - Boundary Cases (negatives, zero, very high numbers, decimals)
 - Error Conditions
 
-You'll never need to consider every condition, just those conditions that representative.
+You'll never need to consider every condition, just those conditions that are representative.
 
 ---
 
 ## What Happens When Our Function is Wrong
 
 ```javascript
-const triple = num => {
+const triple = (num) => {
   return num * 2
 }
 ```
@@ -163,7 +225,7 @@ const triple = num => {
 ## What Happens When We Implement our Function Differently
 
 ```javascript
-const triple = num => {
+const triple = (num) => {
   return num + num + num
 }
 ```
@@ -176,10 +238,10 @@ Our tests allow us to be confident that updates and refactors work.
 
 ---
 
-## Guiding Practices 
+## Guiding Practices
 
-- Unit test primarily only objects and functions 
-- Focus on public interfaces 
+- Unit test primarily only objects and functions
+- Focus on public interfaces
 - Keep tests laser specific
 
 ---
@@ -196,7 +258,7 @@ Our tests allow us to be confident that updates and refactors work.
 
 ---
 
-## Let's TDD a `Snowboarder` class.
+## Let's TDD a `Snowboarder` class
 
 1. Define behaviors - what do we want the snowboarder to do?
 2. Create our test file
@@ -222,14 +284,5 @@ Our tests allow us to be confident that updates and refactors work.
 ---
 
 - before...each
-- debuggers 
-- .only 
-
----
-
-## Common Matchers 
-
-https://jestjs.io/docs/using-matchers
-
-- .toHaveProperty 
-- .toMatchObject
+- debuggers
+- .only

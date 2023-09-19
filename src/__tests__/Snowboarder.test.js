@@ -1,30 +1,29 @@
-import Snowboarder from '../Snowboarder.js'
+import Snowboarder from "../Snowboarder.js"
 
-describe('Snowboarder', () => {
-  
-  const firstName = 'Shaun'
-  const lastName = 'White'
+describe("Snowboarder", () => {
+  const firstName = "Shawn"
+  const lastName = "White"
   let boarder
-  let exampleBoarder = { firstName: 'Shawn', lastName: "White", scores: [] }
+  let exampleBoarder = { firstName: "Shawn", lastName: "White", scores: [] }
 
   beforeEach(() => {
     boarder = new Snowboarder(firstName, lastName)
   })
 
-  describe('when it is initialized', () => {
-    it('has a first name', () => {
+  describe("when it is initialized", () => {
+    it("has a first name", () => {
       expect(boarder.firstName).toEqual(firstName)
     })
-    
-    it('has a last name', () => {
+
+    it("has a last name", () => {
       expect(boarder.lastName).toEqual(lastName)
     })
 
-    it('begins with an empty array of scores as a property', () => {
+    it("begins with an empty array of scores as a property", () => {
       expect(boarder.scores).toEqual([])
     })
 
-    it.only("is created the correct initial properties", () => {
+    it("is created the correct initial properties", () => {
       expect(boarder).toMatchObject(exampleBoarder)
     })
   })

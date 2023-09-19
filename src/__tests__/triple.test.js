@@ -1,4 +1,4 @@
-import triple from '../triple'
+import triple from "../triple.js"
 
 describe("tripling a number", () => {
   it("triples 3 resulting in 9", () => {

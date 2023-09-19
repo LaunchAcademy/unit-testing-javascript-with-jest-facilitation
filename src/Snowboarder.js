@@ -5,11 +5,11 @@ class Snowboarder {
     this.scores = []
   }
 
-  fullName(){
+  fullName() {
     return `${this.firstName} ${this.lastName}`
   }
 
-  registerScore(scoreNumber){
+  registerScore(scoreNumber) {
     this.scores.push(scoreNumber)
     return this.scores
   }

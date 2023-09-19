@@ -1,4 +1,4 @@
-const triple = num => {
+const triple = (num) => {
   return num * 3
 }
 
